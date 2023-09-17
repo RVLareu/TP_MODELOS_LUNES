@@ -1,0 +1,9 @@
+Me gustó el problema. No me pareció dificil el encontrar UNA solución. Si de entrada parecia que iba a ser dificil encontrar LA MEJOR. El largo me pareció bien, parecido a lo que comentaron en la clase de la práctica.
+Me pareció similar a un problema de grafos, con peso en las aristas sumado a algunas restricciones a la hora de ver si es posible visitar un nodo o no. Para hacerlo más fácil igualmente,
+lo pensé como el problema de backtracking de caballo en ajedrez. Mientras hacía el código me di cuenta que en el problema del caballo la idea es ver si existe una solucion,
+mientras que acá no es sólo eso sino también buscar la mejor. De esta manera, no solo es encontrar alternativas a recorridos que no satisfacen lo pedido, sino tambien a lo que satisfacen las restricciones. Sirve para tener como punto de partida
+
+El algoritmo lo que hace es, dada una sucursal y la carga actual, evalua las proximas sucursales viables. Luego la visita, se fija las proximas sucursales viables y reevalua hasta que visita las 150.
+En caso de no haber proximas sucursales válidas, si ya visitaron todas, finaliza con una solución válida, sino retrocede hasta un punto previo válido y elige otra sucursal
+
+Para una primera entrega busqué la primera solución por origen. Y la mejor de entre todos los origenes.
