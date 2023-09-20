@@ -1,5 +1,5 @@
 soluciones = []
-CANTIDAD_MAX_ITER = 5000
+CANTIDAD_MAX_ITER = 100000
 cantidad_iter = 0
 import math
 
