@@ -7,10 +7,6 @@ import math
 def main():
 
     capacidad = -1 # Define tu capacidad máxima
-
-
-
-    capacidad = -1  # Define tu capacidad máxima
     ubicaciones = {}
     demandas = {}
     distancias = []
@@ -50,17 +46,10 @@ def main():
 
         for sucursal in demandas.keys():
             if demandas[sucursal] >= 0:
-                # # se lanza un thread por cada sucursal
-                # t = threading.Thread(target=resolver_tsp_thread, args=(sucursal, capacidad, ubicaciones, demandas, soluciones, distancias))
-                # t.start()
-                # sin hilos
                 print("Sucursal: ", sucursal)
                 resolver_tsp_thread(sucursal, capacidad, ubicaciones, demandas, soluciones, distancias)
 
-        # # Esperar a que todos los threads terminen
-        # for t in threading.enumerate():
-        #     if t != threading.current_thread():
-        #         t.join()
+
         print("Soluciones: ", soluciones)
         soluciones.sort(key=lambda x: x[1])
         with open("solucion.txt", "w") as file:
@@ -70,10 +59,7 @@ def main():
             print(soluciones[0][1])
 
 
-
-
 import math
-import threading
 
 def resolver_tsp_thread(sucursal, capacidad, ubicaciones, demandas, soluciones, distancias):
     ruta_optima = resolver_tsp(sucursal, capacidad, ubicaciones, demandas, distancias)
@@ -116,14 +102,14 @@ def encontrar_ubicacion_mas_cercana(ubicacion_actual, ubicaciones_no_visitadas, 
 
     return ubicacion_cercana
 
-# Función para resolver el problema del viajante de comercio usando un enfoque greedy
+# Función para resolver el tsp usando un enfoque greedy
 def resolver_tsp(sucursal_origen, capacidad, ubicaciones, demandas, distancias):
     ruta_optima = []
     carga_actual = demandas[sucursal_origen]
-    ubicacion_actual = sucursal_origen  # Partimos desde la central vacía
+    ubicacion_actual = sucursal_origen  # Partimos desde la central con la demanda inicial
 
     ubicaciones_no_visitadas = list(ubicaciones.keys())
-    ubicaciones_no_visitadas.remove(sucursal_origen)  # Sacamos la central
+    ubicaciones_no_visitadas.remove(sucursal_origen)  # Sacamos la central visitada recientemente
     while ubicaciones_no_visitadas:
         ubicacion_cercana = encontrar_ubicacion_mas_cercana(ubicacion_actual, ubicaciones_no_visitadas, demandas, capacidad, carga_actual, ubicaciones, distancias)
         if ubicacion_cercana is None:
@@ -134,13 +120,12 @@ def resolver_tsp(sucursal_origen, capacidad, ubicaciones, demandas, distancias):
         ruta_optima.append(ubicacion_cercana)
         ubicacion_actual = ubicacion_cercana
         ubicaciones_no_visitadas.remove(ubicacion_cercana)
-        # if (len(ubicaciones_no_visitadas)% 100 == 0):
-        #     print(len(ubicaciones_no_visitadas))
+
 
     if len(ubicaciones_no_visitadas) > 0:
         return []
     
-    # Volver a la central
+    # Volver a la central (sucursal origen)
     ruta_optima.append(sucursal_origen)
     return ruta_optima
 
