@@ -1,0 +1,3 @@
+Ya el problema 2 con el algoritmo anterior de backtracking se volvía muy largo. Además las optimizaciones de float a int no aportaban nada.
+Probé con un greedy sin ningún tipo de optimización. Yendo de una sucursal a las mas cercana que fuera viable por la capacidad. Igualmente los tiempos
+por cada corrida son muy largos. Esta subida es el resultado de correr las primeras sucursales posibles como origen.
